@@ -1,3 +1,4 @@
+import json
 import dateutil.relativedelta
 from datetime import date, datetime , timedelta
 
@@ -9,4 +10,8 @@ def handler_func(event, context):
     while start_date <= end_date:
         date_range.append(start_date.strftime("%Y-%m-%d"))
         start_date += delta
-    return date_range
+    
+    return {
+        "statusCode": 200,
+        "body": json.dumps(date_range)
+    }
